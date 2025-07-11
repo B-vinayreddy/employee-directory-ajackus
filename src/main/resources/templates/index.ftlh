@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Directory</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Employee Directory</h1>
+
+    <!-- 🔍 Search -->
+    <input type="text" id="searchInput" placeholder="Search by name or email" />
+
+    <!-- 🎛 Filter, Sort, Per Page -->
+    <div style="margin: 20px 0; display: flex; flex-wrap: wrap; gap: 10px;">
+      <select id="filterDepartment">
+        <option value="">All Departments</option>
+        <option value="HR">HR</option>
+        <option value="IT">IT</option>
+        <option value="Finance">Finance</option>
+      </select>
+
+      <select id="filterRole">
+        <option value="">All Roles</option>
+        <option value="Manager">Manager</option>
+        <option value="Developer">Developer</option>
+        <option value="Analyst">Analyst</option>
+      </select>
+
+      <select id="sortBy">
+        <option value="">Sort By</option>
+        <option value="firstNameAsc">First Name (A-Z)</option>
+        <option value="firstNameDesc">First Name (Z-A)</option>
+        <option value="department">Department</option>
+      </select>
+
+      <select id="itemsPerPage">
+        <option value="10">10 per page</option>
+        <option value="25">25 per page</option>
+        <option value="50">50 per page</option>
+        <option value="100">100 per page</option>
+      </select>
+    </div>
+
+    <!-- 👨‍💼 Employees -->
+    <div id="employeeList"></div>
+
+    <!-- 🔢 Pagination -->
+    <div id="pagination" style="text-align:center; margin-top: 20px;"></div>
+
+    <!-- ➕ Add Employee -->
+    <button onclick="showForm()">Add Employee</button>
+  </div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  padding: 20px;
+}
+
+.container {
+  max-width: 960px;
+  margin: auto;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #0056b3;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.employee-card {
+  background-color: #f1f9ff;
+  border: 1px solid #cde1f9;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  transition: transform 0.2s ease;
+}
+
+.employee-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+.employee-card h3 {
+  color: #007bff;
+  margin-bottom: 8px;
+}
+
+.employee-card p {
+  margin: 5px 0;
+}
+
+.actions {
+  margin-top: 10px;
+}
+
+.actions button {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  padding: 8px 14px;
+  margin-right: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.actions button:hover {
+  background-color: #0056b3;
+}
+
+button[onclick="showForm()"] {
+  display: block;
+  margin: 30px auto 0;
+  padding: 12px 25px;
+  font-size: 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[onclick="showForm()"]:hover {
+  background-color: #218838;
+}
+
+form label {
+  display: block;
+  margin: 15px 0 5px;
+}
+
+form input[type="text"],
+form input[type="email"] {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+form button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+form button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+}
+
+form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+form button[type="button"] {
+  background-color: #6c757d;
+  color: #fff;
+  margin-left: 10px;
+}
+
+form button[type="button"]:hover {
+  background-color: #5a6268;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+
+  h1, h2 {
+    font-size: 24px;
+  }
+
+  .employee-card {
+    padding: 15px;
+  }
+}
+
+#pagination button {
+  margin: 5px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+#pagination button.active {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+}
