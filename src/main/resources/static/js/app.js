@@ -85,7 +85,7 @@ function editEmployee(id) {
   const emp = employees.find(e => e.id == id);
   if (!emp) return;
   localStorage.setItem('editEmployee', JSON.stringify(emp));
-  window.location.href = 'form.ftlh';
+  window.location.href = 'form.html';
 }
 
 function deleteEmployee(id) {
@@ -96,7 +96,7 @@ function deleteEmployee(id) {
 
 function showForm() {
   localStorage.removeItem('editEmployee');
-  window.location.href = 'form.ftlh';
+  window.location.href = 'form.html';
 }
 
 window.onload = () => {
@@ -132,7 +132,7 @@ window.onload = () => {
       }
 
       localStorage.removeItem('editEmployee');
-      window.location.href = 'index.ftlh';
+      window.location.href = 'index.html';
     });
   } else {
     document.getElementById('searchInput').addEventListener('input', () => {
@@ -156,5 +156,5 @@ window.onload = () => {
 
 function cancelForm() {
   localStorage.removeItem('editEmployee');
-  window.location.href = 'index.ftlh';
+  window.location.href = 'index.html';
 }
