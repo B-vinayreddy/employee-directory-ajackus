@@ -1,7 +1,7 @@
 let employees = [
-  { id: 1, firstName: 'John', lastName: 'Doe', email: 'john@example.com', department: 'HR', role: 'Manager' },
-  { id: 2, firstName: 'Jane', lastName: 'Smith', email: 'jane@example.com', department: 'IT', role: 'Developer' },
-  { id: 3, firstName: 'David', lastName: 'Lee', email: 'david@example.com', department: 'Finance', role: 'Analyst' }
+  { id: 1, firstName: 'vinay', lastName: 'reddy', email: 'vinay@example.com', department: 'HR', role: 'Manager' },
+  { id: 2, firstName: 'shiva', lastName: 'yadav', email: 'shiva@example.com', department: 'IT', role: 'Developer' },
+  { id: 3, firstName: 'rishi', lastName: 'koushik', email: 'rishi@example.com', department: 'Finance', role: 'Analyst' }
 ];
 
 let currentPage = 1;
