@@ -9,6 +9,7 @@ let itemsPerPage = 10;
 
 function renderList(data = employees) {
   const list = document.getElementById('employeeList');
+  if (!list) return;
   list.innerHTML = '';
 
   const start = (currentPage - 1) * itemsPerPage;
@@ -24,7 +25,7 @@ function renderList(data = employees) {
       <p>Department: ${emp.department}</p>
       <p>Role: ${emp.role}</p>
       <div class="actions">
-        <button onclick="editEmployee(${emp.id})">Edit</button>
+        <a href="form.html?id=${emp.id}"><button>Edit</button></a>
         <button onclick="deleteEmployee(${emp.id})">Delete</button>
       </div>
     `;
@@ -36,6 +37,7 @@ function renderList(data = employees) {
 
 function renderPagination(totalItems) {
   const pagination = document.getElementById('pagination');
+  if (!pagination) return;
   pagination.innerHTML = '';
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
@@ -52,10 +54,10 @@ function renderPagination(totalItems) {
 }
 
 function applyFilters() {
-  const searchValue = document.getElementById('searchInput').value.toLowerCase();
-  const department = document.getElementById('filterDepartment').value;
-  const role = document.getElementById('filterRole').value;
-  const sort = document.getElementById('sortBy').value;
+  const searchValue = document.getElementById('searchInput')?.value.toLowerCase() || '';
+  const department = document.getElementById('filterDepartment')?.value || '';
+  const role = document.getElementById('filterRole')?.value || '';
+  const sort = document.getElementById('sortBy')?.value || '';
 
   let filtered = employees.filter(emp =>
     (!department || emp.department === department) &&
@@ -72,66 +74,64 @@ function applyFilters() {
   renderList(filtered);
 }
 
-function openForm() {
-  document.getElementById('formContainer').style.display = 'block';
-  document.getElementById('employeeForm').reset();
-  document.getElementById('employeeId').value = '';
-}
-
-function closeForm() {
-  document.getElementById('formContainer').style.display = 'none';
-}
-
-function editEmployee(id) {
-  const emp = employees.find(e => e.id === id);
-  if (!emp) return;
-  document.getElementById('formContainer').style.display = 'block';
-  document.getElementById('employeeId').value = emp.id;
-  document.getElementById('firstName').value = emp.firstName;
-  document.getElementById('lastName').value = emp.lastName;
-  document.getElementById('email').value = emp.email;
-  document.getElementById('department').value = emp.department;
-  document.getElementById('role').value = emp.role;
-}
-
 function deleteEmployee(id) {
   if (!confirm('Are you sure you want to delete this employee?')) return;
   employees = employees.filter(e => e.id !== id);
   applyFilters();
 }
 
-document.getElementById('employeeForm').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const id = document.getElementById('employeeId').value;
-  const newEmp = {
-    id: id ? parseInt(id) : Date.now(),
-    firstName: document.getElementById('firstName').value,
-    lastName: document.getElementById('lastName').value,
-    email: document.getElementById('email').value,
-    department: document.getElementById('department').value,
-    role: document.getElementById('role').value
-  };
-
+function loadForm() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
   if (id) {
-    employees = employees.map(emp => emp.id == newEmp.id ? newEmp : emp);
-  } else {
-    employees.push(newEmp);
+    const emp = employees.find(e => e.id == id);
+    if (!emp) return;
+    document.getElementById('employeeId').value = emp.id;
+    document.getElementById('firstName').value = emp.firstName;
+    document.getElementById('lastName').value = emp.lastName;
+    document.getElementById('email').value = emp.email;
+    document.getElementById('department').value = emp.department;
+    document.getElementById('role').value = emp.role;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.getElementById("employeeList")) {
+    renderList();
+    document.getElementById('searchInput').addEventListener('input', () => {
+      currentPage = 1;
+      applyFilters();
+    });
+    ['filterDepartment', 'filterRole', 'sortBy'].forEach(id => {
+      document.getElementById(id).addEventListener('change', () => {
+        currentPage = 1;
+        applyFilters();
+      });
+    });
   }
 
-  closeForm();
-  applyFilters();
-});
+  if (document.getElementById("employeeForm")) {
+    loadForm();
 
-document.getElementById('searchInput').addEventListener('input', () => {
-  currentPage = 1;
-  applyFilters();
-});
+    document.getElementById('employeeForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const id = document.getElementById('employeeId').value;
+      const newEmp = {
+        id: id ? parseInt(id) : Date.now(),
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        email: document.getElementById('email').value,
+        department: document.getElementById('department').value,
+        role: document.getElementById('role').value
+      };
 
-['filterDepartment', 'filterRole', 'sortBy'].forEach(id => {
-  document.getElementById(id).addEventListener('change', () => {
-    currentPage = 1;
-    applyFilters();
-  });
-});
+      if (id) {
+        employees = employees.map(emp => emp.id == newEmp.id ? newEmp : emp);
+      } else {
+        employees.push(newEmp);
+      }
 
-window.onload = applyFilters;
+      window.location.href = "index.html";
+    });
+  }
+});
