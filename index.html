@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -8,48 +9,52 @@
   <div class="container">
     <h1>Employee Directory</h1>
 
-    <!-- 🔍 Search -->
+    <!-- Search & Filters -->
     <input type="text" id="searchInput" placeholder="Search by name or email" />
-
-    <!-- 🎛 Filter, Sort, Per Page -->
-    <div style="margin: 20px 0; display: flex; flex-wrap: wrap; gap: 10px;">
+    <div style="margin: 20px 0;">
       <select id="filterDepartment">
         <option value="">All Departments</option>
         <option value="HR">HR</option>
         <option value="IT">IT</option>
         <option value="Finance">Finance</option>
       </select>
-
       <select id="filterRole">
         <option value="">All Roles</option>
         <option value="Manager">Manager</option>
         <option value="Developer">Developer</option>
         <option value="Analyst">Analyst</option>
       </select>
-
       <select id="sortBy">
         <option value="">Sort By</option>
         <option value="firstNameAsc">First Name (A-Z)</option>
         <option value="firstNameDesc">First Name (Z-A)</option>
         <option value="department">Department</option>
       </select>
-
-      <select id="itemsPerPage">
-        <option value="10">10 per page</option>
-        <option value="25">25 per page</option>
-        <option value="50">50 per page</option>
-        <option value="100">100 per page</option>
-      </select>
     </div>
 
-    <!-- 👨‍💼 Employees -->
+    <!-- Employee List -->
     <div id="employeeList"></div>
 
-    <!-- 🔢 Pagination -->
-    <div id="pagination" style="text-align:center; margin-top: 20px;"></div>
+    <!-- Pagination -->
+    <div id="pagination"></div>
 
-    <!-- ➕ Add Employee -->
-    <button onclick="showForm()">Add Employee</button>
+    <!-- Add Employee Button -->
+    <button onclick="openForm()">Add Employee</button>
+
+    <!-- Add/Edit Form -->
+    <div id="formContainer" style="display:none; margin-top: 30px;">
+      <h2 id="formTitle">Add/Edit Employee</h2>
+      <form id="employeeForm">
+        <input type="hidden" id="employeeId" />
+        <label>First Name: <input type="text" id="firstName" required /></label>
+        <label>Last Name: <input type="text" id="lastName" required /></label>
+        <label>Email: <input type="email" id="email" required /></label>
+        <label>Department: <input type="text" id="department" required /></label>
+        <label>Role: <input type="text" id="role" required /></label>
+        <button type="submit">Save</button>
+        <button type="button" onclick="closeForm()">Cancel</button>
+      </form>
+    </div>
   </div>
 
   <script src="./static/js/app.js"></script>
