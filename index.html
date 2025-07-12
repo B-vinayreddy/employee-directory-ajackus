@@ -9,8 +9,9 @@
   <div class="container">
     <h1>Employee Directory</h1>
 
+    <!-- Search & Filters -->
     <input type="text" id="searchInput" placeholder="Search by name or email" />
-    <div>
+    <div style="margin: 20px 0;">
       <select id="filterDepartment">
         <option value="">All Departments</option>
         <option value="HR">HR</option>
@@ -31,10 +32,29 @@
       </select>
     </div>
 
+    <!-- Employee List -->
     <div id="employeeList"></div>
+
+    <!-- Pagination -->
     <div id="pagination"></div>
 
-    <a href="form.html"><button>Add Employee</button></a>
+    <!-- Add Employee Button -->
+    <button onclick="openForm()">Add Employee</button>
+
+    <!-- Add/Edit Form -->
+    <div id="formContainer" style="display:none; margin-top: 30px;">
+      <h2 id="formTitle">Add/Edit Employee</h2>
+      <form id="employeeForm">
+        <input type="hidden" id="employeeId" />
+        <label>First Name: <input type="text" id="firstName" required /></label>
+        <label>Last Name: <input type="text" id="lastName" required /></label>
+        <label>Email: <input type="email" id="email" required /></label>
+        <label>Department: <input type="text" id="department" required /></label>
+        <label>Role: <input type="text" id="role" required /></label>
+        <button type="submit">Save</button>
+        <button type="button" onclick="closeForm()">Cancel</button>
+      </form>
+    </div>
   </div>
 
   <script src="./static/js/app.js"></script>
